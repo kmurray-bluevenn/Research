@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Line Chart Demo</title>
+	<link href="../../implementation/dashboard/charting/line/styles/style.min.css" rel="stylesheet" />
+
+	<script src="../../implementation/dashboard/core/3rdParty/jquery-1.9.1.js" type="text/ecmascript"></script>
+	<script src="../../implementation/dashboard/core/3rdParty/d3.v3.js" type="text/ecmascript"></script>
+	<script src="../../implementation/dashboard/core/application/scripts/Margin.js" type="text/ecmascript"></script>
+	<script src="../../implementation/dashboard/core/application/scripts/BaseChartOptions.js" type="text/ecmascript"></script>
+	<script src="../../implementation/dashboard/core/application/scripts/BaseChart.js" type="text/ecmascript"></script>
+	<script src="../../implementation/dashboard/charting/line/line.js" type="text/ecmascript"></script>
+	<script src="../../implementation/dashboard/charting/line/models/lineModel.js" type="text/ecmascript"></script>
+	<script src="../../implementation/dashboard/charting/line/models/lineOptions.js" type="text/ecmascript"></script>
+	<style>
+		.chartBody {
+			background-color: #989494;
+		}
+
+		svg {
+			background-color: #f1f1f1;
+		}
+
+		.sample1 {
+			stroke: #ff6a00;
+		}
+
+		.sample2 {
+			stroke: #b6ff00;
+		}
+
+		.sample3 {
+			stroke: #1ea3d5;
+		}
+
+		.sample4 {
+			stroke: #150202;
+		}
+
+		.sample5 {
+			stroke: #63b52b;
+		}
+
+		.area.sample1 {
+			fill: #ff6a00;
+		}
+
+		.area.sample2 {
+			fill: #b6ff00;
+		}
+
+		.area.sample3 {
+			fill: #1ea3d5;
+		}
+
+		.area.sample4 {
+			fill: #150202;
+		}
+
+		.area.sample5 {
+			fill: #63b52b;
+		}
+
+		.circles.sample1 circle {
+			stroke: #000;
+			fill: #ff6a00;
+		}
+
+		.circles.sample2 circle {
+			stroke: #000;
+			fill: #b6ff00;
+		}
+
+		.circles.sample3 circle {
+			stroke: #000;
+			fill: #1ea3d5;
+		}
+
+		.circles.sample4 circle {
+			stroke: #000;
+			fill: #150202;
+		}
+
+		.circles.sample5 circle {
+			stroke: #000;
+			fill: #63b52b;
+		}
+	</style>
+
+</head>
+<body>
+	<section>
+		<article>
+			<header>
+				<h3>Line Chart Demo</h3>
+			</header>
+			<p>This is a test harness to test the Bullet chart control</p>
+			<p><span style="font-size: smaller">This is only a harness, and as such the html should not be considered best practises</span></p>
+		</article>
+		<article>
+			<header><h4>Add</h4></header>
+			<div id="chartspace" class="chartBody"></div>
+			
+		</article>
+	</section>
+	<script>
+		var sAdd = true;
+		function Addmodel() {
+			modelCounter++;
+
+			var sampleData = [];
+			for (var i = 0; i <= 5 ; i++) {
+				var date = new Date(2011, 0, 1);
+				date.setDate(date.getDate() + i)
+				sampleData.push({ key: date, value: Math.round(Math.random() * 10000) / 100 });
+			}
+			model.data.push({ key: "sample" + modelCounter, data: sampleData });
+		}
+
+		var modelCounter = 0;
+		var model = { data: [], xName: "Date", yName: "Some Name" }
+
+		function getDefaultOptions() {
+			return new dashboard.campaign.widget.chart.line.models.LineOptions(1000, 400, getMargins(), false, 3000, 5);
+		}
+
+		Addmodel();
+		var d = new dashboard.campaign.widget.chart.Line("#chartspace", getDefaultOptions());
+		d.render(model);
+
+		function getMargins() {
+			return new dashboard.campaign.widget.chart.models.Margin(20, 20, 20, 20);
+		}
+		function randomData() {
+
+			//model.data.forEach(function (d) {
+			//	d.data.forEach(function(i){ i.value =  Math.round(Math.random() * 10000) / 100 });
+			//});
+
+			model.data.forEach(function (d) {
+				var date = new Date( d.data[d.data.length - 1].key);
+				date.setDate(date.getDate() + 1);
+				d.data.push({ key: date, value: Math.round(Math.random() * 10000) / 100 });
+				d.data.splice(0, 1);
+			});
+			d.update(model);
+		}
+		var timer = window.setInterval(randomData, 5000);
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Gauge Demo Page</title>
+	<script src="../../implementation/dashboard/core/3rdParty/jquery-1.9.1.js" type="text/ecmascript"></script>
+	<script src="../../implementation/dashboard/core/3rdParty/d3.v3.js" type="text/ecmascript"></script>
+	<script src="../../implementation/dashboard/core/application/scripts/Margin.js" type="text/ecmascript"></script>
+	<script src="../../implementation/dashboard/core/application/scripts/BaseChartOptions.js" type="text/ecmascript"></script>
+	<script src="../../implementation/dashboard/core/application/scripts/BaseChart.js" type="text/ecmascript"></script>
+
+	<script src="../../implementation/dashboard/charting/meter/meter.js" type="text/ecmascript"></script>
+	<script src="../../implementation/dashboard/charting/meter/models/meterModel.js" type="text/ecmascript"></script>
+	<script src="../../implementation/dashboard/charting/meter/models/meterOptions.js" type="text/ecmascript"></script>
+
+	<style>
+	</style>
+</head>
+<body>
+	<section>
+		<article>
+			<header>
+				<h3>Meter Chart Demo</h3>
+			</header>
+			<p>This is a test harness to test the Meter chart control</p>
+			<p><span style="font-size: smaller">This is only a harness, and as such the html should not be considered best practises</span></p>
+		</article>
+		<article>
+			<div id="chartspace" class="chartBody"></div>
+		</article>
+	</section>
+	<script>
+	    var model = { title: "Test", data: 100, overallRange: { from: 0, to: 100 }, ranges: [{ from: 75, to: 90, name: "yellow" }, { from: 90, to: 100, name: "red" }] };
+
+	    function getDefaultOptions() {
+	        return new dashboard.campaign.widget.chart.meter.models.MeterOptions(400, 400, getMargins(), false, 3000, 5);
+	    }
+
+	    function getMargins() {
+	        return new dashboard.campaign.widget.chart.models.Margin(20, 20, 20, 20);
+	    }
+	    var d = new dashboard.campaign.widget.chart.Meter("#chartspace", getDefaultOptions());
+	    d.render(model);
+
+	    var timer = window.setInterval(randomData, 5000);
+
+	    function randomData() {
+	        model.data = Math.round(Math.random() * 10000) / 200;
+	        d.update(model);
+	    }
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Mail Campaign Demo Page</title>
+    <link href="../../implementation/dashboard/widget/mailCampaign/style/style.css" rel="stylesheet" />
+    <link href="../../implementation/dashboard/core/application/style/main.min.css" rel="stylesheet" />
+    <style>
+        .bullet {
+            font: 10px sans-serif;
+        }
+
+            .bullet .marker {
+                stroke: #000;
+                stroke-width: 2px;
+            }
+
+            .bullet .tick line {
+                stroke: #666;
+                stroke-width: .5px;
+            }
+
+            .bullet .range.s0 {
+                fill: #eee;
+            }
+
+            .bullet .range.s1 {
+                fill: #ddd;
+            }
+
+            .bullet .range.s2 {
+                fill: #ccc;
+            }
+
+            .bullet .measure.s0 {
+                fill: lightsteelblue;
+            }
+
+            .bullet .measure.s1 {
+                fill: steelblue;
+            }
+
+            .bullet .measure:hover {
+                fill: red;
+            }
+
+            .bullet .title {
+                font-size: 10px;
+                font-weight: bold;
+            }
+
+            .bullet .subtitle {
+                fill: #999;
+            }
+    </style>
+</head>
+<body>
+    <section>
+        <article>
+            <header>
+                <h3>Mail Campaign Widget Demo</h3>
+
+            </header>
+            <p>This is a test harness to test the Mail Campaign Widget</p>
+            <p><span style="font-size: smaller">This is only a harness, and as such the html should not be considered best practises</span></p>
+        </article>
+        <article>
+            <div id="moduleOne" class="component">
+            </div>
+        </article>
+        <article style="display: none">
+            <header>
+                <h4>Options</h4>
+            </header>
+            <fieldset style="width: 300px">
+                <legend>Data</legend>
+                <input type="button" id="timer" value="Disable Auto Refresh" disabled />
+                <input type="button" value="Update" style="margin-top: 10px" disabled />
+            </fieldset>
+            <fieldset style="width: 300px">
+                <legend>Options</legend>
+                <div class="options">
+                    <p>
+                        <label>Control Name</label>
+                        <input type="text" value="Campaign Mail Module" />
+                    </p>
+                    <p>
+                        <label>Show Modules</label>
+                    </p>
+                    <table>
+                        <tr>
+                            <td>Sent</td>
+                            <td>
+                                <input type="checkbox" id="chkSent" /></td>
+                        </tr>
+                        <tr>
+                            <td>Delivered</td>
+                            <td>
+                                <input type="checkbox" id="chkDelivered" /></td>
+                        </tr>
+                        <tr>
+                            <td>Opened</td>
+                            <td>
+                                <input type="checkbox" id="chkOpened" /></td>
+                        </tr>
+                        <tr>
+                            <td>Clicked</td>
+                            <td>
+                                <input type="checkbox" id="chkClicked" /></td>
+                        </tr>
+                        <tr>
+                            <td>Bounce</td>
+                            <td>
+                                <input type="checkbox" id="chkBounce" /></td>
+                        </tr>
+                        <tr>
+                            <td>Unsubscribe</td>
+                            <td>
+                                <input type="checkbox" id="ChkUnsubscribe" /></td>
+                        </tr>
+                        <tr>
+                            <td>Spam</td>
+                            <td>
+                                <input type="checkbox" id="Spam" /></td>
+                        </tr>
+                    </table>
+
+                </div>
+            </fieldset>
+        </article>
+    </section>
+    <script src="../../implementation/dashboard/core/3rdParty/underscore.js"></script>
+    <script src="../../implementation/dashboard/core/3rdParty/d3.v3.js"></script>
+    <script src="../../implementation/dashboard/core/3rdParty/jquery-1.9.1.js"></script>
+    <script src="../../implementation/dashboard/core/application/scripts/utils/logger.js"></script>
+    <script src="../../Implementation/dashboard/charting/bullet/Bullet.js"></script>
+    <script src="../../implementation/dashboard/widget/mailCampaign/scripts/mailCampaign.js"></script>
+    <script>
+
+        var data = [{
+            name: "sent",
+            blob: {
+                "title": "Sent",
+                "subtitle": "",
+                "ranges": [{ label: "range 2", value: 500 }],
+                "measures": [{ "label": "measure2", "value": 12 }],
+                "markers": [{ "label": "marker1", "value": 350 }]
+            }
+        },
+            {
+                name: "delivered",
+                blob: {
+                    "title": "Delivered",
+                    "subtitle": "",
+                    "ranges": [{ label: "range 2", value: 25 }],
+                    "measures": [{ "label": "measure2", "value": 12 }],
+                    "markers": [{ "label": "marker1", "value": 100 }]
+                }
+            },
+            {
+                name: "opened",
+                blob: {
+                    "title": "Opened",
+                    "subtitle": "",
+                    "ranges": [{ label: "range 2", value: 25 }],
+                    "measures": [{ "label": "measure2", "value": 12 }],
+                    "markers": [{ "label": "marker1", "value": 100 }]
+                }
+            },
+            {
+                name: "clicked",
+                blob: {
+                    "title": "Clicked",
+                    "subtitle": "",
+                    "ranges": [{ label: "range 2", value: 25 }],
+                    "measures": [{ "label": "measure2", "value": 12 }],
+                    "markers": [{ "label": "marker1", "value": 100 }]
+                }
+            },
+            {
+                name: "delivered",
+                blob: {
+                    "title": "Delivered",
+                    "subtitle": "",
+                    "ranges": [{ label: "range 2", value: 25 }],
+                    "measures": [{ "label": "measure2", "value": 12 }],
+                    "markers": [{ "label": "marker1", "value": 100 }]
+                }
+            },
+            {
+                name: "bounce",
+                blob: {
+                    "title": "Bounce",
+                    "subtitle": "",
+                    "ranges": [{ label: "range 2", value: 25 }],
+                    "measures": [{ "label": "measure2", "value": 12 }],
+                    "markers": [{ "label": "marker1", "value": 100 }]
+                }
+            },
+            {
+                name: "unsubscribe",
+                blob: {
+                    "title": "Unsubscribe",
+                    "subtitle": "",
+                    "ranges": [{ label: "range 2", value: 25 }],
+                    "measures": [{ "label": "measure2", "value": 12 }],
+                    "markers": [{ "label": "marker1", "value": 100 }]
+                }
+            },
+            {
+                name: "spam",
+                blob: {
+                    "title": "Spam",
+                    "subtitle": "",
+                    "ranges": [{ label: "range 2", value: 25 }],
+                    "measures": [{ "label": "measure2", "value": 12 }],
+                    "markers": [{ "label": "marker1", "value": 100 }]
+                }
+            }
+        ];
+        try {
+        	var d = new dashboard.campaign.widget.CampaignMailWidget("#moduleOne");
+            d.Render();
+            d.start(data);
+            d.letterBox(data);
+        } catch (e) {
+            dashboard.Logger.log(e.message);
+        }
+    </script>
+</body>
+</html>

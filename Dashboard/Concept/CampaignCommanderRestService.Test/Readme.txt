@@ -1,0 +1,2 @@
+﻿This is a simple web page application to test the restful web service that is making calls to extract campaign data.
+If the restful web service gets replaced, this could still be used to test the data coming back.

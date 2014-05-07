@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title></title>
+	<!-- Expected libraries -->
+	<script src="../../implementation/dashboard/core/3rdParty/underscore.js"></script>
+	<script src="../../implementation/dashboard/core/3rdParty/modernizr-2.6.2.js"></script>
+	<script src="../../implementation/dashboard/core/3rdParty/jquery-1.9.1.js"></script>
+	<script src="../../implementation/dashboard/core/3rdParty/PubSub.js"></script>
+	<script src="../../implementation/dashboard/core/3rdParty/d3.v3.min.js"></script>
+
+	<!-- Core css for the dashboard -->
+	<link href="../../implementation/dashboard/core/application/style/main.css" rel="stylesheet" />
+
+	<!-- Core scripts for the dashboard -->
+	<script src="../../implementation/dashboard/core/application/scripts/utils/logger.js"></script>
+	<script src="../../implementation/dashboard/core/application/scripts/interfaces/dashboardInterfaces.js"></script>
+	<script src="../../Implementation/dashboard/core/application/scripts/Campaign.js"></script>
+	<script src="../../implementation/dashboard/core/application/scripts/Dashboard.js"></script>
+	<script src="../../implementation/dashboard/core/application/scripts/DataManager.js"></script>
+	<script src="../../implementation/dashboard/core/application/scripts/Margin.js"></script>
+	<script src="../../implementation/dashboard/core/application/scripts/BaseChart.js"></script>
+	<script src="../../implementation/dashboard/core/application/scripts/widgets/BaseWidget.js"></script>
+	<script src="../../implementation/dashboard/core/application/scripts/BaseChartOptions.js"></script>
+
+	<!-- custom widgets, will be dynamically loaded after demo -->
+	<script src="../../implementation/dashboard/charting/donut/models/donutOptions.js"></script>
+	<script src="../../implementation/dashboard/charting/donut/models/donutModel.js"></script>
+	<script src="../../implementation/dashboard/charting/donut/Donut.js"></script>
+	<link href="../../implementation/dashboard/charting/bullet/style/style.css" rel="stylesheet" />
+	<script src="../../implementation/dashboard/charting/bullet/models/bulletModel.js"></script>
+	<script src="../../implementation/dashboard/charting/bullet/models/bulletOptions.js"></script>
+	<link href="../../implementation/dashboard/charting/bullet/style/style.css" rel="stylesheet" />
+	<script src="../../implementation/dashboard/charting/bullet/Bullet.js"></script>
+	<script src="../../implementation/dashboard/core/application/scripts/widgets/Widget_001.js"></script>
+
+	<style>
+		.chartBody
+		{
+			width: 500px;
+			height: 50px;
+			background-color: #89B6CB;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			-ms-border-radius: 5px;
+			-o-border-radius: 5px;
+			border-radius: 5px;
+		}
+
+		.colour1
+		{
+			fill: red;
+		}
+		
+		.colour2
+		{
+			fill: green;
+		}
+		
+		.colour3
+		{
+			fill: brown;
+		}
+		
+		.colour4
+		{
+			fill: cornflowerblue;
+		}
+		
+	</style>
+</head>
+<body>
+	<section>
+		<article>
+			<div class="dashboard">
+				<header><h2>Dashboard</h2></header>
+				<h3>Campaign Details (<span id="p_clientId"></span>)</h3>
+				<div id="contentwrapper">
+					<div id="contentcolumn">
+						<div id="campaigns" class="innertube campaigns"></div>
+					</div>
+				</div>
+
+				<div id="prevButton">
+					<div class="innertube">&lt;&lt;</div>
+				</div>
+
+				<div id="nextButton">
+					<div class="innertube">&gt;&gt;</div>
+				</div>
+			</div>
+			<br />
+			<br />
+			<div class="footer">
+				<input type="button" value="Back" />
+				<input type="button" value="Next" />
+			</div>
+		</article>
+	</section>
+	<script>
+		var clientId = 1;
+		$("#p_clientId").text(clientId);
+		var d = new dashboard.Dashboard("campaigns", clientId, 2000); // 2000 is the update interval
+	</script>
+</body>
+</html>

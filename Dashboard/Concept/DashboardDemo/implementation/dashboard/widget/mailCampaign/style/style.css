@@ -1,0 +1,20 @@
+﻿/*.chartcolumn {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+  width: @width;
+  height: @height;
+  margin-bottom: @margin-Bottom;
+  background: #89b6cb;
+background: rgb(137,182,203);
+background: -moz-linear-gradient(top,  rgba(137,182,203,1) 0%, rgba(165,247,240,1) 52%, rgba(125,185,232,1) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(137,182,203,1)), color-stop(52%,rgba(165,247,240,1)), color-stop(100%,rgba(125,185,232,1)));
+background: -webkit-linear-gradient(top,  rgba(137,182,203,1) 0%,rgba(165,247,240,1) 52%,rgba(125,185,232,1) 100%);
+background: -o-linear-gradient(top,  rgba(137,182,203,1) 0%,rgba(165,247,240,1) 52%,rgba(125,185,232,1) 100%);
+background: -ms-linear-gradient(top,  rgba(137,182,203,1) 0%,rgba(165,247,240,1) 52%,rgba(125,185,232,1) 100%);
+background: linear-gradient(to bottom,  rgba(137,182,203,1) 0%,rgba(165,247,240,1) 52%,rgba(125,185,232,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#89b6cb', endColorstr='#7db9e8',GradientType=0 );
+
+}*/

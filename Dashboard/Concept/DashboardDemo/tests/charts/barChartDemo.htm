@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title></title>
+	<style>
+		.chart rect {
+			stroke: white;
+			fill: steelblue;
+		}
+
+		.chartBody {
+			background-color: aliceblue;
+		}
+	</style>
+	<script src="../../implementation/dashboard/core/3rdParty/jquery-1.9.1.js" type="text/ecmascript"></script>
+	<script src="../../implementation/dashboard/core/3rdParty/d3.v3.js" type="text/ecmascript"></script>
+	<script src="../../implementation/dashboard/core/application/scripts/Margin.js" type="text/ecmascript"></script>
+	<script src="../../implementation/dashboard/core/application/scripts/BaseChartOptions.js" type="text/ecmascript"></script>
+	<script src="../../implementation/dashboard/core/application/scripts/BaseChart.js" type="text/ecmascript"></script>
+	<script src="../../implementation/dashboard/charting/bar/bar.js" type="text/ecmascript"></script>
+	<script src="../../implementation/dashboard/charting/bar/models/barModel.js" type="text/ecmascript"></script>
+	<script src="../../implementation/dashboard/charting/bar/models/barOptions.js" type="text/ecmascript"></script>
+</head>
+<body>
+	<section>
+		<article>
+			<header>
+				<h3>Bar Chart Demo</h3>
+			</header>
+			<p>This is a test harness to test the Bar chart control</p>
+			<p><span style="font-size: smaller">This is only a harness, and as such the html should not be considered best practises</span></p>
+		</article>
+		<article>
+			<div id="chartspace" class="chartBody"></div>
+			<div id="Div1" class="chartBody"></div>
+		</article>
+	</section>
+	<script>
+		var add = true;
+		var model = { data: [{ key: "A", value: 4 }, { key: "B", value: 0 }, { key: "C", value: 23 }] };
+		var model2 = { data: [ /*{ key: new Date(2011, 0, 1), value: 4 }, { key: new Date(2011, 0, 2), value: 3 }, { key: new Date(2011, 0, 3), value: 5 }, { key: new Date(2011, 0, 4), value: 6 }, { key: new Date(2011, 0, 7), value: 7 } */] }
+		function getMargins() {
+			return new dashboard.campaign.widget.chart.models.Margin(
+				//	parseInt($("#top").val()),
+				//	parseInt($("#bottom").val()),
+				//	parseInt($("#left").val()),
+				//	parseInt($("#right").val())
+				20, 20, 50, 20
+			);
+		}
+
+		function getDefaultOptions() {
+			return new dashboard.campaign.widget.chart.bar.models.BarOptions(500, 400, getMargins());
+		}
+
+		function getOtherOptions() {
+			var x = new dashboard.campaign.widget.chart.bar.models.BarOptions(500, 400, getMargins());
+			x.Axis.xAxis.isDateBased = true;
+			x.Axis.xAxis.formatMethod = d3.time.format("%x");
+			return x;
+		}
+
+		var d = new dashboard.campaign.widget.chart.Bar("#chartspace", getDefaultOptions());
+		d.initialise();
+		d.render(model);
+
+		var d2 = new dashboard.campaign.widget.chart.Bar("#Div1", getOtherOptions());
+		d2.initialise();
+		d2.render(model2);
+
+		function randomData() {
+			try {
+				model.data.forEach(function (d) {
+					d.value = Math.floor((Math.random() * 10) + 1);
+				});
+
+			
+				if (add) {
+					var date = new Date(2011, 0, 1);
+					date.setDate(date.getDate() + model2.data.length)
+					model2.data.push({ key: date, value: Math.floor((Math.random() * 10) + 1) });
+					if (model2.data.length > 5)
+						add = false;
+				}
+				else {
+					model2.data.pop();
+					if (model2.data.length == 0)
+						add = true;
+				}
+				d.update(model);
+				d2.update(model2);
+			}
+			catch (error) {
+				console.log(error.message);
+			}
+		}
+
+		var timer = window.setInterval(randomData, 5000);
+	</script>
+</body>
+</html>

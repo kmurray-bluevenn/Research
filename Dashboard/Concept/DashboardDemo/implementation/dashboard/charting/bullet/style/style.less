@@ -1,0 +1,70 @@
+﻿
+@strokeMarkerColour: #000;
+@strokeTickColour: #666;
+@range0Colour: #eee;
+@range1Colour: #ddd;
+@range2Colour: #ccc;
+@measure0Colour: lightsteelblue;
+@measure1Colour: steelblue;
+@measure2Colour: red;
+
+.bullet
+{
+	font: 10px sans-serif;
+
+	.marker
+	{
+		stroke: @strokeMarkerColour;
+		stroke-width: 2px;
+	}
+
+	.tick
+	{
+		line
+		{
+			stroke: @strokeTickColour;
+			stroke-width: .5px;
+		}
+	}
+
+	.range.s0
+	{
+		fill: @range0Colour;
+	}
+
+	.range.s1
+	{
+		fill: @range1Colour;
+	}
+
+	.range.s2
+	{
+		fill: @range2Colour;
+	}
+
+	.measure.s0
+	{
+		fill: @measure0Colour;
+	}
+
+	.measure.s1
+	{
+		fill: @measure1Colour;
+	}
+
+	.measure:hover
+	{
+		fill: @measure2Colour;
+	}
+
+	.title
+	{
+		font-size: 11px;
+		font-weight: bold;
+	}
+
+	.subtitle
+	{
+		fill: #999;
+	}
+}

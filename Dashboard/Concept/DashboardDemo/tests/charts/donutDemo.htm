@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title></title>
+	<style type="text/css">
+		div.bar
+		{
+			display: inline-block;
+			width: 20px;
+			height: 75px; /* We'll override this later */
+			background-color: teal;
+			margin-right: 2px;
+		}
+	</style>
+	<script src="../../implementation/dashboard/core/3rdParty/d3.v3.min.js"></script>
+	<script src="../../implementation/dashboard/core/3rdParty/jquery-1.9.1.min.js"></script>
+	<script src="../../implementation/dashboard/core/application/scripts/Margin.js"></script>
+	<script src="../../implementation/dashboard/core/application/scripts/BaseChartOptions.js"></script>
+	<script src="../../implementation/dashboard/charting/donut/models/donutModel.js"></script>
+	<script src="../../implementation/dashboard/charting/donut/models/donutOptions.js"></script>
+	<script src="../../implementation/dashboard/core/application/scripts/BaseChart.js"></script>
+	<script src="../../implementation/dashboard/charting/donut/Donut.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+</head>
+<body>
+	<div>Donut Demo</div>
+	<div id="workspace" class="chartBody" data-bind="style: { width: computedWidth, height: computedHeight }" style="border: 1px dashed black"></div>
+	<div>
+		<div>
+			<span>Click to update: </span>
+			<button data-bind="click: updateModel">Update Model</button>
+		</div>
+		<div>
+			<span>Width:
+				<input data-bind="value: computedWidth" /></span>&nbsp;
+            <span>Height:
+							<input data-bind="value: computedHeight" /></span>
+			<div>Number of slices:
+				<input data-bind="value: computedSliceNumber" /></div>
+			<div>Show as Pie Chart:
+				<input data-bind="checked: computedShowAsPieChart" type="checkbox" /></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var oldValues = { pie1: [] };
+		function getVals() {
+			oldValues.pie1 = [];
+			for (var i = 0; i < vm.slices; i++)
+				oldValues.pie1.push({ key: "Something " + (i + 1), value: Math.round(Math.random() * 100000) + 1 });
+			return oldValues;
+		}
+
+		function ViewModel() {
+			this.donut = {};
+			this.width = 600;
+			this.height = 300;
+			this.slices = 3;
+			this.isPieChart = ko.observable(false);
+
+			this.computedShowAsPieChart = ko.computed({
+				read: function () {
+					return this.isPieChart();
+				},
+				write: function (value) {
+					this.isPieChart(value);
+					this.renewModel(false);
+				}
+			}, this);
+
+			this.computedSliceNumber = ko.computed({
+				read: function () {
+					return this.slices;
+				},
+				write: function (value) {
+					this.slices = value;
+					this.renewModel(true);
+				}
+			}, this);
+
+			this.computedWidth = ko.computed({
+				read: function () {
+					return this.width;
+				},
+				write: function (value) {
+					this.width = value;
+					this.renewModel(false);
+				}
+			}, this);
+
+			this.computedHeight = ko.computed({
+				read: function () {
+					return this.height;
+				},
+				write: function (value) {
+					this.height = value;
+					this.renewModel(false);
+				}
+			}, this);
+
+			this.options = function () {
+				var item = new dashboard.campaign.widget.chart.donut.models.DonutOptions();
+				item.width = this.width;
+				item.height = this.height;
+				item.pieChart = this.isPieChart();
+				return item;
+			};
+
+			this.renewModel = function () {
+				$("#workspace").empty();
+				this.donut = new dashboard.campaign.widget.chart.Donut(this.options(), function (data) {
+					return data.pie1;
+				});
+				this.donut.el = "workspace";
+				this.donut.initialise();
+				this.donut.processData("Renew", getVals());
+			};
+
+			this.updateModel = function () {
+				this.donut.processData("Update", getVals());
+			};
+		}
+
+		var vm = new ViewModel();
+		ko.applyBindings(vm);
+		vm.renewModel(true);
+	</script>
+</body>
+</html>

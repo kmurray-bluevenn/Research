@@ -1,0 +1,73 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CampaignCommanderRestService", "CampaignCommanderRestService\CampaignCommanderRestService.csproj", "{4CA03276-D8CB-4096-82B2-717ED7A451C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CampaignCommanderRestService.Test", "CampaignCommanderRestService.Test\CampaignCommanderRestService.Test.csproj", "{95CF13EA-8AD2-432B-99BF-A72C045444D9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4CA03276-D8CB-4096-82B2-717ED7A451C5} = {4CA03276-D8CB-4096-82B2-717ED7A451C5}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CampaignCommanderDAL", "CampaignCommanderDAL\CampaignCommanderDAL.csproj", "{2F3252BA-1B3B-4083-A146-9F242A1FB464}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DashboardDemo", "DashboardDemo\DashboardDemo.csproj", "{095A988C-CF5A-4C9C-8EFA-E46D4A736EE8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4CA03276-D8CB-4096-82B2-717ED7A451C5} = {4CA03276-D8CB-4096-82B2-717ED7A451C5}
+		{2F3252BA-1B3B-4083-A146-9F242A1FB464} = {2F3252BA-1B3B-4083-A146-9F242A1FB464}
+		{A3F7ECD3-5515-4FBD-9919-55A936A561DD} = {A3F7ECD3-5515-4FBD-9919-55A936A561DD}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentController", "ContentControler\ContentController.csproj", "{A3F7ECD3-5515-4FBD-9919-55A936A561DD}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://sf-bri-tfs:8080/tfs/development
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = CampaignCommanderRestService\\CampaignCommanderRestService.csproj
+		SccProjectName1 = CampaignCommanderRestService
+		SccLocalPath1 = CampaignCommanderRestService
+		SccProjectUniqueName2 = CampaignCommanderRestService.Test\\CampaignCommanderRestService.Test.csproj
+		SccProjectName2 = CampaignCommanderRestService.Test
+		SccLocalPath2 = CampaignCommanderRestService.Test
+		SccProjectUniqueName3 = CampaignCommanderDAL\\CampaignCommanderDAL.csproj
+		SccProjectName3 = CampaignCommanderDAL
+		SccLocalPath3 = CampaignCommanderDAL
+		SccProjectUniqueName4 = DashboardDemo\\DashboardDemo.csproj
+		SccProjectName4 = DashboardDemo
+		SccLocalPath4 = DashboardDemo
+		SccProjectUniqueName5 = ContentControler\\ContentController.csproj
+		SccProjectName5 = ContentControler
+		SccLocalPath5 = ContentControler
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4CA03276-D8CB-4096-82B2-717ED7A451C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CA03276-D8CB-4096-82B2-717ED7A451C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CA03276-D8CB-4096-82B2-717ED7A451C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CA03276-D8CB-4096-82B2-717ED7A451C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95CF13EA-8AD2-432B-99BF-A72C045444D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95CF13EA-8AD2-432B-99BF-A72C045444D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95CF13EA-8AD2-432B-99BF-A72C045444D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95CF13EA-8AD2-432B-99BF-A72C045444D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F3252BA-1B3B-4083-A146-9F242A1FB464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F3252BA-1B3B-4083-A146-9F242A1FB464}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F3252BA-1B3B-4083-A146-9F242A1FB464}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F3252BA-1B3B-4083-A146-9F242A1FB464}.Release|Any CPU.Build.0 = Release|Any CPU
+		{095A988C-CF5A-4C9C-8EFA-E46D4A736EE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{095A988C-CF5A-4C9C-8EFA-E46D4A736EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{095A988C-CF5A-4C9C-8EFA-E46D4A736EE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{095A988C-CF5A-4C9C-8EFA-E46D4A736EE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3F7ECD3-5515-4FBD-9919-55A936A561DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3F7ECD3-5515-4FBD-9919-55A936A561DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3F7ECD3-5515-4FBD-9919-55A936A561DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3F7ECD3-5515-4FBD-9919-55A936A561DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
