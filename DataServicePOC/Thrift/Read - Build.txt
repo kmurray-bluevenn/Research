@@ -1,0 +1,11 @@
+-- This is the prebuild tasks --
+
+
+rmdir /s /q "$(ProjectDir)..\thrift\gen-csharp"
+del /f /q "$(ProjectDir)..\thrift\ThriftImpl.dll"
+SET OUTPUT_DIRR=$(ProjectDir)..\thrift\
+SET THRIFT_FILE=$(ProjectDir)..\thrift\DataService.thrift
+for %%I in ("%OUTPUT_DIRR%") do set SHORT_DIR=%%~fsI
+for %%I in ("%THRIFT_FILE%") do set THRIFT_SHORT=%%~fsI
+"$(ProjectDir)..\thrift\thrift.exe" --gen csharp -o %SHORT_DIR% %THRIFT_SHORT%
+$(MSBuildToolsPath)\Csc.exe /t:library /out:"$(ProjectDir)..\thrift\ThriftImpl.dll" /recurse:"$(ProjectDir)..\thrift\gen-csharp"\* /reference:"$(ProjectDir)..\thrift\Thrift.dll"
