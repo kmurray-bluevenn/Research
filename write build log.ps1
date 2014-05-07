@@ -1,6 +1,7 @@
-﻿$now = [datetime]::Now.ToString()
+﻿$version = $args[0]
+$now = [datetime]::Now.ToString()
 $logFile = [System.IO.Path]::Combine($Env:HOMEDRIVE + "\", "build log.txt")
-$logText = [string]::Format("CI Build started | {0}", $now)
+$logText = [string]::Format("{0} CI Build started | {1}",$version, $now)
 if (!(Test-Path -Path $logFile))
 {
 	New-Item -ItemType file -Path $logFile
